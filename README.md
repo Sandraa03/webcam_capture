@@ -28,3 +28,5 @@ Per accedir a un directori desde el terminal farem servir la comanda ‘cd ruta_
 11. Ara ja podem executar el programa mitjançant la comanda ‘./webcam_capture’
 
 La proxima vegada que volguem executar el programa, com que ja ho tindrem preparat en el nostre ordinador, només será necessari realitzar el pas 11 desde el directori webcam_capture.
+
+S'ha modificat el programa perque mostri, a partir del píxel central, un rectangle negre de 20x48 píxels.
