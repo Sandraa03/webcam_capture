@@ -16,6 +16,15 @@ int main(int argc, char *argv[])
 	
 	//pixel value (4-element vector)
 	cv::Scalar_<unsigned char> px_value;
+
+	//Creamos un 4-element vector para poder forzar los pixeles al color deseado
+	cv::Scalar_<unsigned char> f_value;
+	//Como queremos que se muestren en color negro, no es necesario definir ningun valor, si quisieramo definirlo tndriamos que descomentar las siguientes línes y ponerle el valor deseado a cada 'color'.
+	
+	//f_value[0] = 0;
+	//f_value[1] = 0;
+	//f_value[2] = 0;
+	//f_value[3] = 0;
 	
 	//check user args
 	switch(argc)
@@ -51,7 +60,17 @@ int main(int argc, char *argv[])
             std::cout << "No frame" << std::endl;
             cv::waitKey();
         }
-        
+	
+        //Para poder modificar los pixeles hay que recorrerlos, modificaremos las 20 filas y las 48 columnas contiguasiguientes al punto central.
+
+	for(int i = image.rows/2; i <= image.rows/2 + 20; i++)
+          {
+	    for(int j = image.cols/2; j <= image.cols/2 + 48; j++)
+	      {
+		image.at<cv::Scalar_<unsigned char> >(i,j,0) = f_value;
+	      }
+	  }
+	
         //show image in a window
         cv::imshow("Output Window", image);
 		
@@ -60,9 +79,11 @@ int main(int argc, char *argv[])
 		std::cout << "image depth: " << image.depth() << std::endl; 
 		std::cout << "num channels: " << image.channels() << std::endl; 
 		px_value = image.at<cv::Scalar_<unsigned char> >(image.rows/2, image.cols/2, 0); 
-		std::cout << "central pixel value (BGR): " << (int)px_value[0] << "," << (int)px_value[1] << "," << (int)px_value[2] << std::endl; 
-		
+		std::cout << "central pixel value (BGR): " << (int)px_value[0] << "," << (int)px_value[1] << "," << (int)px_value[2] << std::endl;
+				
 		//Waits 1 millisecond to check if a key has been pressed. If so, breaks the loop. Otherwise continues.
         if(cv::waitKey(1) >= 0) break;
-    }   
+    }
+    
+    
 }
