@@ -1,5 +1,7 @@
-#include "cv.h"
-#include "highgui.h"
+//opencv
+#include "opencv2/opencv.hpp"
+
+//std
 #include <iostream>
 #include <cstdlib>
 
